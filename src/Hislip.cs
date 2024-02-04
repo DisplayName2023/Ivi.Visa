@@ -4,8 +4,8 @@ namespace Vxi11Net
 {
     public class Hislip
     {
-        public const short ServerVersion = 0x0100;
-        public const short VendorID = 0x5858;
+        public const ushort ServerVersion = 0x0100;
+        public const ushort VendorID = 0x5858;
         public const int PORT = 4880;
 
         public const int Initialize_ = 0;
@@ -14,7 +14,7 @@ namespace Vxi11Net
         public const int Error = 3;
         public const int AsyncLock = 4;
         public const int AsyncLockResponse_ = 5;
-        public const int Data = 6;
+        public const int Data_ = 6;
         public const int DataEnd = 7;
         public const int DeviceClearComplete = 8;
         public const int DeviceClearAcknowledge = 9;
@@ -117,8 +117,8 @@ namespace Vxi11Net
             public char Prologue1;
             public byte MessageType;
             public byte ControlCode;
-            public short Protocol;
-            public short SessionID;
+            public ushort Protocol;
+            public ushort SessionID;
             public long PayloadLength;
         };
         public struct AsyncInitializeResponse
@@ -128,7 +128,7 @@ namespace Vxi11Net
             public byte MessageType;
             public byte ControlCode;
             public short dummy;
-            public short ServerID;
+            public ushort ServerID;
             public long PayloadLength;
         };
         public struct AsyncLockResponse
@@ -139,6 +139,15 @@ namespace Vxi11Net
             public byte ControlCode;
             public int MessageParameter;
             public long PayloadLength;
-        };        
+        };
+        public struct Data
+        {
+            public char Prologue0;
+            public char Prologue1;
+            public byte MessageType;
+            public byte ControlCode;
+            public uint MessageID;
+            public ulong PayloadLength;
+        };
     }
 }
